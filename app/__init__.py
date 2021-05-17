@@ -1,4 +1,5 @@
-from flask import Flask #kolejnosć instrukcji ma znaczenie
+from flask import Flask 
+#kolejnosć instrukcji ma znaczenie
 
 app = Flask(__name__)
 
