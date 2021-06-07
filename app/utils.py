@@ -1,4 +1,4 @@
-def extract_element(dom_tree,opinion,selector,attribute=None):
+def extract_element(dom_tree,selector,attribute=None):
     try:
         if attribute:
             if isinstance(attribute,str):

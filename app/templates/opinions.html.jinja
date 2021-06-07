@@ -1,9 +1,10 @@
 {% extends "layout.html.jinja" %}
 
 {% block middle %}
-    <table id="opinions" class='table table-striped'> 
-
-    </table>
+    {{ product }}
+    {# <table id='opinions' class='table table-striped'>
+        
+        </table> #}
 {% endblock middle %}
 {% block scripts %}
         <script>
@@ -11,4 +12,4 @@
                 $('#opinions').DataTable();
             });
         </script>
-    {% endblock scripts %}
+{% endblock scripts %}

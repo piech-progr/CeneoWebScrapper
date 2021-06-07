@@ -30,7 +30,7 @@ class Product:
     def __repr__(self):
         return f"Product(product_id={self.product_id}, product_name={self.product_name}, opinions:=["+",".join(opinion.__repr__() for opinion in self.opinions) + "])"
 
-    def __dict__(self):
+    def to_dict(self):
         return {
             "product_id": self.product_id,
             "product_name": self.product_name,

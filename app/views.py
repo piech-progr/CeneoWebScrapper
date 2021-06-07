@@ -23,7 +23,7 @@ def products():
     products_list = [product.split('.')[0] for product in listdir("app/products")]
     return render_template("products.html.jinja", products=products_list)
 
-@app.route('/opinions/<productId>')
+@app.route('/opinions/<product_id>')
 def opinions(product_id):
     print(product_id)
     product = Product(product_id, opinions=[])
@@ -31,7 +31,7 @@ def opinions(product_id):
     product.read_from_json()
     return render_template("opinions.html.jinja", product=str(product))
 
-@app.route('/charts/<productId>')
+@app.route('/charts/<product_id>')
 def charts(product_id):
     pass
 

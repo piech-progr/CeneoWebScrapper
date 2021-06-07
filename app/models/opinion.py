@@ -16,9 +16,9 @@ class Opinion:
         "useless": ["span[id^='votes-no']"]
     }
 
-    def __init__(self, opinionId = None, author = None, recommendation = None, stars = None, content = None, pros = [], cons = [], purchased = None, submit_date = None, 
+    def __init__(self, opinion_id = None, author = None, recommendation = None, stars = None, content = None, pros = [], cons = [], purchased = None, submit_date = None, 
                 purchase_date = None, useful = None, useless = None):
-        self.opinionId = opinionId
+        self.opinion_id = opinion_id
         self.author = author
         self.recommendation = recommendation
         self.stars = stars
@@ -34,7 +34,7 @@ class Opinion:
     def extract_opinion(self, opinion):                         
         for key, args in self.selectors.items():
             setattr(self, key, extract_element(opinion, *args))
-        self.opinionId = opinion["data-entry-id"]
+        self.opinion_id = opinion["data-entry-id"]
         return self
 
 
@@ -49,14 +49,14 @@ class Opinion:
         return self
 
     def __str__(self):
-        return f"opinion_id: {self.opinionId} " +"<br>" .join(f"{key}: {str(getattr(self, key))}" for key in self.selectors.keys())
+        return f"opinion_id: {self.opinion_id} " +"<br>" .join(f"{key}: {str(getattr(self, key))}" for key in self.selectors.keys())
 
     
     def __repr__(self):
-        return f"Opinion(opinion_id={self.opinionId}" +"," .join(f"{key}={str(getattr(self, key))}" for key in self.selectors.keys()) + ")"
+        return f"Opinion(opinion_id={self.opinion_id}" +"," .join(f"{key}={str(getattr(self, key))}" for key in self.selectors.keys()) + ")"
 
-    def __dict__(self):
-        return {"opinion_id": self.opinionId} | {key: getattr(self,key) for key in self.selectors.keys()}
+    def to_dict(self):
+        return {"opinion_id": self.opinion_id} | {key: getattr(self,key) for key in self.selectors.keys()}
 
 
 
