@@ -1,11 +1,21 @@
-{% extends "layout.html.jinja" %}
 
+{% extends "layout.html.jinja" %}
+<!--  Nawiasy klamrowe do wyświetlania wartości zmiennych  -->
 {% block middle %}
-    <form action="{{ url_for('extract') }}" method="POST">
+  {% if form.product_id.errors %}
+    <script>
+      swal( "Błędny kod produktu" ,  "Wpisz poprawny kod produltu zawierający co najmniej 6 cyfr" ,  "error" )
+    </script>
+  {% endif %}
+  <form action="{{ url_for('extract') }}" method="POST">
   <div class="mb-3">
-        <label for="product_id" class="form-label">Identyfikator produktu</label>
-        <input type="text" class="form-control" id="product_id" name="product_id" placeholder="Podaj identyfikator produktu">
+    <br> 
+        <label for="product_id" class="form-label">Podaj identyfikator produktu:</label>
+        <!-- {{ form.hidden_tag() }}  --> <!-- tag daje wiele, token daje 1 -->
+         {{ form.product_id(size=20) }} 
+        {{ form.submit(class="btn btn-primary") }} <!-- <input type="submit" class="form-control" id="product_id" name="product_id" placeholder="Podaj identyfikator produktu"> -->
   </div>
-  <input  type="submit" class="btn btn-primary" value="Pobierz">
+  
+
 </form>
 {% endblock middle %}

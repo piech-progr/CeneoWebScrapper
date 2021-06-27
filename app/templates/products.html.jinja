@@ -1,11 +1,18 @@
 {% extends "layout.html.jinja" %}
 
 {% block middle %}
-    <h2> Lista prouktów </h2>
-    <ul class="list-group">
+<br>
+    <h2> Lista produktów </h2>
+    <ul class="list-group" >
         {% for product in products %}
 
-        <li class="list-group-item"><a href="{{ url_for('opinions', product_id=product) }}">{{ product }}</a></li>
+        <li class="list-group-item list-group-item-action"><a href="{{ url_for('opinions', product_id=product) }}">{{ product }}</a>
+        <br>
+            <a href="app/products/{{product}}.json" download>
+                        <input type="submit" value="pobierz" class="btn btn-primary"/>
+                    </a>
+                 </li>
+        
 
         {% endfor %}
     </ul>

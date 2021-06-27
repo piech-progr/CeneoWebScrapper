@@ -15,6 +15,10 @@ class Product:
             respons = requests.get(next_page)
             page_dom = BeautifulSoup(respons.text, "html.parser")
             opinions = page_dom.select("div.js_product-review")
+            if  self.product_name == None:
+                self.product_name == page_dom.select("div.product-top__product-info__name-container > h1.product-top__product-info__name js_product-h1-link js_product-force-scroll js_searchInGoogleTooltip default-cursor")
+            elif  self.product_name == None:
+                self.product_name == page_dom.select("div.product-top__product-info__name-container > h1.product-top__product-info__name long-name js_product-h1-link js_product-force-scroll js_searchInGoogleTooltip default-cursor")
             for opinion in opinions:
                 self.opinions.append(Opinion().extract_opinion(opinion).transform_opinion())
             try:
@@ -25,7 +29,7 @@ class Product:
             print(next_page)
 
     def __str__(self):
-        return f"product_id: {self.product_id}<br>product_name: {self.product_name}\nopinions:<br>"+"<br><br>".join(str(opinion) for opinion in self.opinions)
+        return f"product_id: {self.product_id}<br>product_name: {self.product_name}\n opinions:<br>"+"<br><br>".join(str(opinion) for opinion in self.opinions)
 
     def __repr__(self):
         return f"Product(product_id={self.product_id}, product_name={self.product_name}, opinions:=["+",".join(opinion.__repr__() for opinion in self.opinions) + "])"
@@ -49,7 +53,7 @@ class Product:
         with open(f"app/products/{self.product_id}.json", "r", encoding="UTF-8") as fp:
             prod = json.load(fp)
         fp.close()
-        self.product_name=prod['product_name']
+        # self.product_name=prod['product_name']
         opinions = prod['opinions']
         for opinion in opinions:
             self.opinions.append(Opinion(**opinion)) #** to rozpakowywanie
