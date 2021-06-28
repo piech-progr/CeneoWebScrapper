@@ -43,12 +43,12 @@ def opinions(product_id):
     print(", ".join(op.opinion_id for op in product.opinions))
     product.read_from_json()
     #----------------------------------------------- PRÓBA STWORZENIA TABELI -------------------------------------------------------------
-    # prod=product["opinions"]
-    # opinionsFormated = pd.DataFrame.from_records(prod)
+    prod=product.opinions
+    opinionsFormated = pd.DataFrame.from_records([opinion.to_dict() for opinion in prod])
     # prod=""
     # prod=product.read_from_json()
     # opinionsFormated = pd.DataFrame.from_records(prod.to_dict()) #from_dict nie działa
-    return render_template("opinions.html.jinja", product=str(product), headings=headings) #opinionsFormated=str(opinionsFormated))
+    return render_template("opinions.html.jinja", product=str(product), headings=headings, opinionsFormated=opinionsFormated.to_html())
 
 @app.route('/charts/<product_id>')
 def charts(product_id):

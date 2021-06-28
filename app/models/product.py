@@ -15,10 +15,10 @@ class Product:
             respons = requests.get(next_page)
             page_dom = BeautifulSoup(respons.text, "html.parser")
             opinions = page_dom.select("div.js_product-review")
+            
             if  self.product_name == None:
                 self.product_name == page_dom.select("div.product-top__product-info__name-container > h1.product-top__product-info__name js_product-h1-link js_product-force-scroll js_searchInGoogleTooltip default-cursor")
-            elif  self.product_name == None:
-                self.product_name == page_dom.select("div.product-top__product-info__name-container > h1.product-top__product-info__name long-name js_product-h1-link js_product-force-scroll js_searchInGoogleTooltip default-cursor")
+        
             for opinion in opinions:
                 self.opinions.append(Opinion().extract_opinion(opinion).transform_opinion())
             try:

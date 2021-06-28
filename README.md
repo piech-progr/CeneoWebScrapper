@@ -7,6 +7,7 @@
 ##### Podczas tworzenia aplikacji zastosowano podejście obiektowe
 
 <br>
+
 ##### Etap 1. Pobranie składowych pojedynczych opiii
 - pobranie kodu pojedynczej strony z opiniami
 - wyodrębnienie z kodu strony pojedynczej opinii

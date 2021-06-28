@@ -1,8 +1,8 @@
 {% extends "layout.html.jinja" %}
 
 {% block middle %}
-<!-- 
-<table>
+
+<!-- <table>
     {% for row in opinionsFormated %}
     <tr>
         {% for cell in row %} 
@@ -14,10 +14,12 @@
     {% endfor %}
 </table> -->
 
-    {{ product }} 
+{{opinionsFormated}}
+
+    <!-- {{ product }}  -->
 <br>
 
-    <table>
+    <!-- <table>
         <tr>
             {% for header in headings %}
             <th>{{header}}<hr> </th>
@@ -34,7 +36,7 @@
         </tr>
         {% endfor %}
     </table>
-
+ -->
 
     
 
